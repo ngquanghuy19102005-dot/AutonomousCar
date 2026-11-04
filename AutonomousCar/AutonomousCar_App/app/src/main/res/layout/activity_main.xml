@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D1B2A"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- HEADER & BLUETOOTH CONNECTION -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#1B263B">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AUTONOMOUS ROBOT CAR"
+                    android:textColor="#E0E1DD"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvBtStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="● Chưa kết nối Bluetooth"
+                    android:textColor="#778DA9"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <EditText
+                        android:id="@+id/etMacAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:background="#0D1B2A"
+                        android:textColor="#FFFFFF"
+                        android:hint="Địa chỉ MAC HC-05 (VD: 98:D3:31:...)"
+                        android:textColorHint="#415A77"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnConnectBt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:text="Kết nối"
+                        android:textSize="11sp"
+                        android:backgroundTint="#0077B6"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginStart="6dp" />
+
+                    <Button
+                        android:id="@+id/btnDisconnectBt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:text="Ngắt"
+                        android:textSize="11sp"
+                        android:backgroundTint="#C1121F"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- RADAR KHOẢNG CÁCH 3 HƯỚNG -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#1B263B">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📡 RADAR KHOẢNG CÁCH THỜI GIAN THỰC"
+                    android:textColor="#48CAE4"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- Cảm biến Trước -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⬆️ Phía Trước"
+                        android:textColor="#E0E1DD"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvDistFront"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-- cm"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ProgressBar
+                        android:id="@+id/pbDistFront"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="160dp"
+                        android:layout_height="8dp"
+                        android:max="200"
+                        android:progress="200"
+                        android:progressTint="#00B4D8" />
+                </LinearLayout>
+
+                <!-- Cảm biến 2 bên Trái - Phải -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Trái -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⬅️ Bên Trái"
+                            android:textColor="#E0E1DD"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvDistLeft"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-- cm"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <ProgressBar
+                            android:id="@+id/pbDistLeft"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
+                            android:max="200"
+                            android:progress="200"
+                            android:progressTint="#00B4D8"
+                            android:layout_marginHorizontal="12dp" />
+                    </LinearLayout>
+
+                    <!-- Phải -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="➡️ Bên Phải"
+                            android:textColor="#E0E1DD"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvDistRight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-- cm"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <ProgressBar
+                            android:id="@+id/pbDistRight"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
+                            android:max="200"
+                            android:progress="200"
+                            android:progressTint="#00B4D8"
+                            android:layout_marginHorizontal="12dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#415A77"
+                    android:layout_marginVertical="10dp" />
+
+                <!-- Chế độ lái & Tốc độ -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Chế độ Tự Hành (Auto Radar)"
+                        android:textColor="#E0E1DD"
+                        android:textSize="13sp" />
+
+                    <Switch
+                        android:id="@+id/switchAutoAvoidance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvCurrentMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ĐIỀU KHIỂN THỦ CÔNG (BLUETOOTH)"
+                    android:textColor="#90E0EF"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:layout_marginTop="2dp" />
+
+                <!-- Thanh trượt tốc độ PWM -->
+                <TextView
+                    android:id="@+id/tvSpeedDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tốc độ PWM: 220/255"
+                    android:textColor="#E0E1DD"
+                    android:textSize="12sp"
+                    android:layout_marginTop="8dp" />
+
+                <SeekBar
+                    android:id="@+id/seekSpeed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progressTint="#48CAE4"
+                    android:thumbTint="#0077B6" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- D-PAD BÀN PHÍM ĐIỀU KHIỂN HƯỚNG -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="14dp"
+            app:cardBackgroundColor="#1B263B">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🕹️ BÀN ĐIỀU KHIỂN TAY (D-PAD TOUCH)"
+                    android:textColor="#E0E1DD"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Nút Tiến -->
+                <ImageButton
+                    android:id="@+id/btnForward"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#0077B6"
+                    android:src="@android:drawable/arrow_up_float"
+                    android:tint="#FFFFFF" />
+
+                <!-- Hàng Giữa: Trái - Dừng - Phải -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginVertical="8dp">
+
+                    <ImageButton
+                        android:id="@+id/btnLeft"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:backgroundTint="#0077B6"
+                        android:src="@android:drawable/arrow_down_float"
+                        android:rotation="90"
+                        android:tint="#FFFFFF"
+                        android:layout_marginEnd="16dp" />
+
+                    <ImageButton
+                        android:id="@+id/btnStop"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:backgroundTint="#C1121F"
+                        android:src="@android:drawable/ic_delete"
+                        android:tint="#FFFFFF" />
+
+                    <ImageButton
+                        android:id="@+id/btnRight"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:backgroundTint="#0077B6"
+                        android:src="@android:drawable/arrow_down_float"
+                        android:rotation="270"
+                        android:tint="#FFFFFF"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <!-- Nút Lùi -->
+                <ImageButton
+                    android:id="@+id/btnBackward"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#0077B6"
+                    android:src="@android:drawable/arrow_down_float"
+                    android:tint="#FFFFFF" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ĐIỀU KHIỂN BẰNG GIỌNG NÓI & COPILOT AI -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="14dp"
+            app:cardBackgroundColor="#1B263B">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎙️ GIỌNG NÓI &amp; TRỢ LÝ COPILOT AI"
+                    android:textColor="#E0E1DD"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnVoiceControl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="🎤 Nói Khẩu Lệnh"
+                        android:backgroundTint="#6A1B9A"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:layout_marginEnd="6dp" />
+
+                    <Button
+                        android:id="@+id/btnAskCopilot"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="🤖 Hỏi Copilot AI"
+                        android:backgroundTint="#00897B"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvCopilotAdvice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#0D1B2A"
+                    android:textColor="#90E0EF"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>
